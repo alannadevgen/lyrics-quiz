@@ -1,4 +1,4 @@
-# LyricsQuizz
+# Lyrics Quiz
 
 ## Framework7 CLI Options
 
@@ -6,13 +6,13 @@ Framework7 app created with following options:
 
 ```
 {
-  "cwd": "/home/ensai/DevMobile",
+  "cwd": "/Users/alanna/Documents/Cours/ENSAI/Semestres/S4/TechnologiesMobiles/TP/lyrics-quiz",
   "type": [
     "capacitor"
   ],
-  "name": "LyricsQuizz",
+  "name": "Lyrics Quiz",
   "framework": "react",
-  "template": "single-view",
+  "template": "blank",
   "bundler": "vite",
   "cssPreProcessor": false,
   "theming": {
