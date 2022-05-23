@@ -4,9 +4,10 @@ import {
   Navbar,
   NavTitle,
   NavTitleLarge,
-  Link,
-  Toolbar,
+  List,
+  ListInput,
   Block,
+  Button
 } from 'framework7-react';
 
 const HomePage = () => (
@@ -16,14 +17,29 @@ const HomePage = () => (
       <NavTitle>Lyrics Quiz</NavTitle>
       <NavTitleLarge>Lyrics Quiz</NavTitleLarge>
     </Navbar>
-    {/* Toolbar */}
-    <Toolbar bottom>
-      <Link>Left Link</Link>
-      <Link>Right Link</Link>
-    </Toolbar>
+    
     {/* Page content */}
-    <Block strong>
-      <p>Here is your blank Framework7 app. Let's see what we have here.</p>
+    
+    <Block strong noHairlinesMd>
+      <p>Choisissez vos noms d'équipe ! </p>
+
+      <List inlineLabels noHairlinesMd>
+        <ListInput
+          label="Equipe n°1"
+          type="text"
+          placeholder="Nom d'équipe"
+          clearButton
+        />
+
+        <ListInput
+          label="Equipe n°2"
+          type="text"
+          placeholder="Nom d'équipe"
+          clearButton
+        />
+      </List>
+
+      <Button fill href="/manche">Démarrer une partie</Button>
     </Block>
 
   </Page>
