@@ -30,7 +30,16 @@ const loadEquipe = () => {
 };
 */
 
+const getNextManche = () => {
+  store.dispatch('incrementManche');
+};
+
+const updateScore = () => {
+  store.dispatch('incrementScore');
+};
+
 const choixEquipe = Math.floor(Math.random() * 2);
+const autreEquipe = Math.abs(choixEquipe-1);
 
 const ManchePage = () => (
   <Page name="manche">
@@ -73,12 +82,12 @@ const ManchePage = () => (
     <Block strong noHairlinesMd>
       <Row>
         <Col>
-          <Button fill color="red">
+          <Button fill color="red" onClick={getNextManche()}>
             Proposition non validée
           </Button>
         </Col>
         <Col>
-          <Button fill color="green">
+          <Button fill color="green" onClick={getNextManche}>
             Proposition validée
           </Button>
         </Col>
