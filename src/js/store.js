@@ -4,9 +4,9 @@ import { createStore } from 'framework7/lite';
 const store = createStore({
   state: {
     words: [],
-    manche,
-    scores: [],
-    nomEquipes: []
+    manche: 1,
+    scores: [10, 6],
+    nomEquipes: ["Noël", "Alanna"]
   },
   getters: {
     words({ state }) {
@@ -29,8 +29,11 @@ const store = createStore({
     incrementScore({ state }, numEquipe){
       state.scores[numEquipe] += 1;
     },
-    incrementManche({ state }, numManche){
-      state.manche[numManche] += 1;
+    incrementManche({ state }){
+      state.manche += 1;
+    },
+    getNomEquipes({ state }, index){
+      state.nomEquipes[index];
     }
   },
 })
