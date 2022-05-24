@@ -21,6 +21,12 @@ const store = createStore({
     },
     nomEquipes({ state }) {
       return state.nomEquipes;
+    },
+    auteur({ state }) {
+      return state.auteur;
+    },
+    titre({ state }) {
+      return state.titre;
     }
   },
   actions: {
@@ -38,7 +44,10 @@ const store = createStore({
     },
     getNomEquipes({ state }, index){
       state.nomEquipes[index];
-    }
+    },
+    loadLyrics({ state }, auteur, titre){
+      url = "https://api.lyrics.ovh/v1/" + auteur + titre;
+    },
   },
 })
 export default store;

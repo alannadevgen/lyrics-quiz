@@ -49,6 +49,11 @@ const NextLevelUnvalidate = () => {
   store.dispatch('incrementScore', autreEquipe);
 };
 
+
+const TestProp = () => {
+  const auteur = document.getElementById("Artiste").value;
+}
+
 const ManchePage = () => (
   <Page name="manche">
     {/* Top Navbar */}
@@ -85,6 +90,7 @@ const ManchePage = () => (
     
     <List inlineLabels noHairlinesMd>
     <ListInput
+      inputId="Artiste"
       label="Artiste"
       type="text"
       placeholder="Artiste"
@@ -92,6 +98,7 @@ const ManchePage = () => (
     />
 
     <ListInput
+      inputId="Chanson"
       label="Chanson"
       type="text"
       placeholder="Chanson"
@@ -99,6 +106,14 @@ const ManchePage = () => (
     />
 
   </List>
+  </Block>
+
+  <Button fill color="blue" onClick={TestProp}>
+            Rechercher auteur et titre sur l'API lyrics.ovh
+          </Button>
+
+  <Block id="ReponseAPI">
+    Résultat de la recherche :
   </Block>
 
   <BlockTitle>Validation de la réponse</BlockTitle>
