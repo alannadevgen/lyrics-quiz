@@ -12,7 +12,8 @@ import {
 import store from '../js/store';
 
 const getNames = () => {
-  store.dispatch('setNomEquipe', [document.getElementById('equipe1').value, document.getElementById('equipe2').value])
+  store.dispatch('setNomEquipe', [document.getElementById('equipe1').value, document.getElementById('equipe2').value]);
+  store.dispatch('chooseWord');
 };
 
 

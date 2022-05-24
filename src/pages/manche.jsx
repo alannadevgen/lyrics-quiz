@@ -20,7 +20,7 @@ import store from '../js/store';
 const Manche = ({numManche}) => <h1><b>Manche n°{numManche}</b></h1>;
 const Equipe = ({nomEquipe}) => <span><b>Equipe</b> : {nomEquipe}</span>;
 const Score = ({scoreEquipe}) => <span><b>Score</b> : {scoreEquipe}</span>;
-const Question = ({mot}) => <span><b>Quelle chanson de quel artiste contient le mot suivant</b> : {mot} ?</span>;
+const Question = ({mot}) => <span><b>Quelle chanson de quel artiste contient le mot suivant</b> : <span id="mot">{mot}</span> ?</span>;
 
 /* ne fonctionne pas
 const nomEquipes = useStore('nomEquipes');
@@ -38,17 +38,50 @@ const getNextManche = () => {
 const NextLevelValidate = () => {
   getNextManche();
   store.dispatch('incrementScore', actuEquipe);
+  store.dispatch('chooseWord');
 };
 
 const NextLevelUnvalidate = () => {
   getNextManche();
   store.dispatch('incrementScore', autreEquipe);
+  store.dispatch('chooseWord');
 };
 
 
 const TestProp = () => {
-  const auteur = document.getElementById("Artiste").value;
+  const artiste = document.getElementById("Artiste").value;
+  const chanson = document.getElementById("Chanson").value;
+  const motATrouver = document.getElementById("mot").innerHTML;
+  const url = "https://api.lyrics.ovh/v1/" + artiste + "/" + chanson ;
+  fetch(url).then(resp => resp.json())
+  .then(json => {
+    if (json['error']) {
+      document.getElementById("ReponseAPI").innerHTML="Résultat de la recherche : La recherche n'a donné aucun résultat. ";
+    } else {
+        const lyrics = json['lyrics'];
+        const mots = lyrics.split(/[ \n\t\r'.,]/) ;
+        var compteur = 0;
+        for (let i in mots) {
+          if (motATrouver.localeCompare(mots[i]) == 0) {
+            compteur += 1;
+          } 
+        }
+        if (compteur>=1) {
+          document.getElementById("ReponseAPI").innerHTML="Résultat de la recherche : L'API a trouvé les paroles de la chanson " +
+          chanson + " de l'artiste " + artiste + ".<br>" + "Elle contient bien le mot cherché ! Félicitations !" ;
+        } else {
+          document.getElementById("ReponseAPI").innerHTML="Résultat de la recherche : L'API a trouvé les paroles de la chanson " +
+          chanson + " de l'artiste " + artiste + ".<br>" + "Sauf erreur, elle ne contient pas le mot cherché. Désolé." ;
+        }
+      }
+  })
+  .catch( () => {
+    document.getElementById("ReponseAPI").innerHTML="Il semble que l'API ne réponde pas. Désolé." ;
+  });
+
+
 }
+
 
 const ManchePage = () => (
   <Page name="manche">
@@ -82,7 +115,7 @@ const ManchePage = () => (
     <br></br><br></br>
 
     {/* Question */}
-    <p>Quelle chanson de quel artiste contient le mot suivant : {useStore('words')[Math.floor(Math.random()*useStore('words').length)]} ?</p>    
+    <Question mot={useStore('word')} />
     
     <List inlineLabels noHairlinesMd>
     <ListInput

@@ -5,6 +5,7 @@ import { createStore } from 'framework7/lite';
 const store = createStore({
   state: {
     words: [],
+    word : "",
     manche: 1,
     scores: [0, 0],
     nomEquipes: []
@@ -12,6 +13,9 @@ const store = createStore({
   getters: {
     words({ state }) {
       return state.words;
+    },
+    word({ state }) {
+      return state.word;
     },
     manche({ state }) {
       return state.manche;
@@ -45,11 +49,11 @@ const store = createStore({
     getNomEquipes({ state }, index){
       state.nomEquipes[index];
     },
-    loadLyrics({ state }, auteur, titre){
-      url = "https://api.lyrics.ovh/v1/" + auteur + titre;
-    },
     setNomEquipe({ state }, nom){
       state.nomEquipes = nom; 
+    },
+    chooseWord({state}){
+      state.word = state.words[Math.floor(Math.random()*state.words.length)];
     }
   },
 })
