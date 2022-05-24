@@ -45,7 +45,7 @@ const MyApp = () => {
       capacitorApp.init(f7);
     }
     // Call F7 APIs here
-    store.dispatch('loadWords', './data/words.json')
+    store.dispatch('loadWords', './components/data/words.json')
   });
 
   return (

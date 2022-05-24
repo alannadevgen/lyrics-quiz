@@ -1,4 +1,5 @@
 
+import { value } from 'dom7';
 import { createStore } from 'framework7/lite';
 
 const store = createStore({
@@ -24,7 +25,10 @@ const store = createStore({
   },
   actions: {
     loadWords({ state }, path) {
-      state.words = fetch(path).then(response => response.json()).then(words => state.words = words);
+      fetch(path).then(resp => resp.json())
+      .then(json => {
+        state.words = json.map( indice => indice["word"] );
+      });
     },
     incrementScore({ state }, numEquipe){
       state.scores[numEquipe] += 1;

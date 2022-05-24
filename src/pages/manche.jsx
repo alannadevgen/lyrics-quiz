@@ -77,7 +77,7 @@ const ManchePage = () => (
     <br></br><br></br>
 
     {/* Question */}
-    <Question mot={"mot"}/>
+    <p>Quelle chanson de quel artiste contient le mot suivant : {useStore('words')[Math.floor(Math.random()*useStore('words').length)]} ?</p>    
     
     <List inlineLabels noHairlinesMd>
     <ListInput
