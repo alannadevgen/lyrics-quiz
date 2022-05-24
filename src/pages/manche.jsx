@@ -27,8 +27,8 @@ console.log(nomEquipes);
 */
 
 // definition de l'equipe actuelle et de l'adversaire
-// const actuEquipe = Math.floor(Math.random() * 2);
-// const autreEquipe = Math.abs(actuEquipe-1);
+const actuEquipe = Math.floor(Math.random() * 2);
+const autreEquipe = Math.abs(actuEquipe-1);
 
 
 const getNextManche = () => {
@@ -39,9 +39,6 @@ const updateScore = ({numEquipe}) => {
   store.dispatch('incrementScore', numEquipe);
 };
 
-const choixEquipe = Math.floor(Math.random() * 2);
-// const choixMot = Math.floor(Math.random(useStore('words').length()));
-const autreEquipe = Math.abs(choixEquipe-1);
 const NextLevelValidate = () => {
   getNextManche();
   store.dispatch('incrementScore', actuEquipe);
@@ -84,7 +81,7 @@ const ManchePage = () => (
     <br></br><br></br>
 
     {/* Question */}
-    <p>Quelle chanson de quel artiste contient le mot suivant : {useStore('words')[0]} ?</p>    
+    <p>Quelle chanson de quel artiste contient le mot suivant : {useStore('words')[Math.floor(Math.random()*useStore('words').length)]} ?</p>    
     
     <List inlineLabels noHairlinesMd>
     <ListInput
