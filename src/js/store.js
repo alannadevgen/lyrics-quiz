@@ -34,6 +34,9 @@ const store = createStore({
     },
     getNomEquipes({ state }, index){
       state.nomEquipes[index];
+    },
+    setNomEquipe({ state }, nom){
+      state.nomEquipes = nom; 
     }
   },
 })
