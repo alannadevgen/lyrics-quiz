@@ -7,7 +7,9 @@ const store = createStore({
     words: [],
     manche: 1,
     scores: [0, 0],
-    nomEquipes: []
+    nomEquipes: [],
+    actuEquipe: Math.floor(Math.random() * 2),
+    autreEquipe: Math.abs(actuEquipe-1)
   },
   getters: {
     words({ state }) {
