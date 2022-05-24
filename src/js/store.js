@@ -7,7 +7,7 @@ const store = createStore({
     words: [],
     manche: 1,
     scores: [0, 0],
-    nomEquipes: ["Noël", "Alanna"]
+    nomEquipes: []
   },
   getters: {
     words({ state }) {
@@ -48,6 +48,9 @@ const store = createStore({
     loadLyrics({ state }, auteur, titre){
       url = "https://api.lyrics.ovh/v1/" + auteur + titre;
     },
+    setNomEquipe({ state }, nom){
+      state.nomEquipes = nom; 
+    }
   },
 })
 export default store;

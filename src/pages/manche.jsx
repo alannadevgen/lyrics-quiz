@@ -21,6 +21,7 @@ const Manche = ({numManche}) => <h1><b>Manche n°{numManche}</b></h1>;
 const Equipe = ({nomEquipe}) => <span><b>Equipe</b> : {nomEquipe}</span>;
 const Score = ({scoreEquipe}) => <span><b>Score</b> : {scoreEquipe}</span>;
 const Question = ({mot}) => <span><b>Quelle chanson de quel artiste contient le mot suivant</b> : {mot} ?</span>;
+
 /* ne fonctionne pas
 const nomEquipes = useStore('nomEquipes');
 console.log(nomEquipes);
@@ -30,13 +31,8 @@ console.log(nomEquipes);
 const actuEquipe = Math.floor(Math.random() * 2);
 const autreEquipe = Math.abs(actuEquipe-1);
 
-
 const getNextManche = () => {
   store.dispatch('incrementManche');
-};
-
-const updateScore = ({numEquipe}) => {
-  store.dispatch('incrementScore', numEquipe);
 };
 
 const NextLevelValidate = () => {
