@@ -15,7 +15,6 @@ const getNames = () => {
   store.dispatch('setNomEquipe', [document.getElementById('equipe1').value, document.getElementById('equipe2').value])
 };
 
-
 const HomePage = () => (
   <Page name="home">
     {/* Top Navbar */}
@@ -43,7 +42,6 @@ const HomePage = () => (
         
         <ListInput
           inputId="equipe2"
-          // value="equipe2"
           label="Equipe n°2"
           type="text"
           placeholder="Nom de l'équipe n°2"
@@ -59,37 +57,11 @@ const HomePage = () => (
         fill 
         href="/manche"
         onClick={getNames}
-        >
-          Démarrer une partie
-        </Button>
+      >
+        Démarrer une partie
+      </Button>
     </Block>
-    
-    {/*useEffect(() => {
-      console.log(document.getElementById('equipe1').value);
-      console.log(document.getElementById('equipe2').value);
-    }, [])*/}
-    
-    {/*useEffect(() => 
-      {
-        window.addEventListener('mousemove', () => {});
-      
-        // returned function will be called on component unmount 
-        return () => {
-          window.removeEventListener('mousemove', () => {})
-          console.log(document.getElementById('equipe1').value);
-          console.log(document.getElementById('equipe2').value);
-        }
-      }, [])
-    */}
-
   </Page>
 );
 
 export default HomePage;
-
-// const eq1 = document.getElementById('equipe1');
-// var eq2 = document.getElementById('equipe2');
-// console.log(eq1);
-// console.log(eq2);
-
-
