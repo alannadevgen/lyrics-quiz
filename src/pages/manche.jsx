@@ -21,26 +21,6 @@ const Equipe = ({nomEquipe}) => <span><b>Equipe</b> : {nomEquipe}</span>;
 const Score = ({scoreEquipe}) => <span><b>Score</b> : {scoreEquipe}</span>;
 const Question = ({mot}) => <span><b>Quelle chanson de quel artiste contient le mot suivant</b> : {mot} ?</span>;
 
-// definition de l'equipe actuelle et de l'adversaire
-// const actuEquipe = Math.floor(Math.random() * 2);
-// const autreEquipe = Math.abs(actuEquipe-1);
-// let actuEquipe = store.getters.actuEquipe.value;
-// let autreEquipe = store.getters.autreEquipe.value;
-
-/*
-function setInitEquipe() {
-  const [actuEquipe, setActuEquipe] = useState(Math.floor(Math.random() * 2));
-  const [autreEquipe, setAutreEquipe] = useState(Math.abs(actuEquipe-1));
-  useEffect(() => {
-    function handleStatusChange(props) {
-      setActuEquipe(props.actuEquipe);
-      setAutreEquipe(props.autreEquipe);
-    }
-    changerOrdreEquipe()
-  });
-}
-*/
-
 // incrementer le numero de la manche
 const getNextManche = () => {
   store.dispatch('incrementManche');
