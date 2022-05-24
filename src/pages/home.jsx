@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from "react";
 import {
   Page,
   Navbar,
@@ -10,6 +10,7 @@ import {
   Button
 } from 'framework7-react';
 import store from '../js/store';
+
 
 
 const HomePage = () => (
@@ -27,9 +28,9 @@ const HomePage = () => (
 
       <List inlineLabels noHairlinesMd>
         <ListInput
-          id = "equipe1"
-          label="Equipe n°1"
-          type="text"
+          id = 'equipe1'
+          label='Equipe n°1'
+          type='text'
           placeholder="Nom de l'équipe n°1"
           noStoreData="false"
           clearButton
@@ -39,7 +40,8 @@ const HomePage = () => (
           {/*{store.dispatch('setNomEquipe', nomEquipe1)}*/}
         </ListInput>
         <ListInput
-          id = "equipe2"
+          inputId="equipe2"
+          value="equipe2"
           label="Equipe n°2"
           type="text"
           placeholder="Nom de l'équipe n°2"
@@ -47,13 +49,28 @@ const HomePage = () => (
           required
           validate
         >
-          {/*{store.dispatch('setNomEquipe', nomEquipe1)}*/}
+          {/*{store.dispatch('setNomEquipe', {nom : nomEquipe1})}*/}
         </ListInput>
-      </List>
 
+        
+      </List>
+      
       <Button fill href="/manche">Démarrer une partie</Button>
     </Block>
+    
+    {useEffect(() => {
+      console.log(document.getElementById('equipe1').label);
+      console.log(document.getElementById('equipe2').value);
+    }, [])}
 
   </Page>
 );
+
 export default HomePage;
+
+// const eq1 = document.getElementById('equipe1');
+// var eq2 = document.getElementById('equipe2');
+// console.log(eq1);
+// console.log(eq2);
+
+
