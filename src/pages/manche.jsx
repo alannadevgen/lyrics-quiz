@@ -39,6 +39,7 @@ const updateScore = () => {
 };
 
 const choixEquipe = Math.floor(Math.random() * 2);
+// const choixMot = Math.floor(Math.random(useStore('words').length()));
 const autreEquipe = Math.abs(choixEquipe-1);
 
 const ManchePage = () => (
@@ -58,7 +59,7 @@ const ManchePage = () => (
     <Score scoreEquipe={useStore('scores')[choixEquipe]}/>
     
     {/* Question */}
-    <p>Quelle chanson de quel artiste contient le mot suivant : xxx ?</p>    
+    <p>Quelle chanson de quel artiste contient le mot suivant : {useStore('words')[0]} ?</p>    
     
     <List inlineLabels noHairlinesMd>
     <ListInput
@@ -82,7 +83,7 @@ const ManchePage = () => (
     <Block strong noHairlinesMd>
       <Row>
         <Col>
-          <Button fill color="red" onClick={getNextManche()}>
+          <Button fill color="red" onClick={getNextManche}>
             Proposition non validée
           </Button>
         </Col>
