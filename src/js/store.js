@@ -56,12 +56,6 @@ const store = createStore({
       state.manche += 1;
     },
 
-    /* recuperer le nom des equipes
-    getNomEquipes({ state }, index){
-      state.nomEquipes[index];
-    },
-    */
-
     // enregistrer les paroles
     loadLyrics({ state }, auteur, titre){
       url = "https://api.lyrics.ovh/v1/" + auteur + titre;
@@ -80,16 +74,7 @@ const store = createStore({
     // enregistrer l'autre equipe
     setAutreEquipe({ state }, autreEquipe){
       state.autreEquipe = autreEquipe; 
-    },
-
-    // changer l'ordre des equipes
-    changerOrdreEquipe({ state }){
-    // changerOrdreEquipe({ state }, {actuEquipe, autreEquipe}){
-      // state.actuEquipe = 1-actuEquipe ;
-      // state.autreEquipe = 1-autreEquipe ; 
-      state.actuEquipe = 1-state.actuEquipe ;
-      state.autreEquipe = 1-state.autreEquipe ; 
-    },
+    }
   },
 })
 export default store;
