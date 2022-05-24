@@ -8,7 +8,9 @@ const store = createStore({
     word : "",
     manche: 1,
     scores: [0, 0],
-    nomEquipes: []
+    nomEquipes: [],
+    actuEquipe: 0,
+    autreEquipe: 1
   },
   getters: {
     words({ state }) {
@@ -31,29 +33,50 @@ const store = createStore({
     },
     titre({ state }) {
       return state.titre;
+    },
+    actuEquipe({ state }) {
+      return state.actuEquipe;
+    },
+    autreEquipe({ state }) {
+      return state.autreEquipe;
     }
   },
   actions: {
+    // enregistrer les mots
     loadWords({ state }, path) {
       fetch(path).then(resp => resp.json())
       .then(json => {
         state.words = json.map( indice => indice["word"] );
       });
     },
+
+    // incrementer le score d'un point d'une equipe
     incrementScore({ state }, numEquipe){
       state.scores[numEquipe] += 1;
     },
+
+    // numero de la manche
     incrementManche({ state }){
       state.manche += 1;
     },
-    getNomEquipes({ state }, index){
-      state.nomEquipes[index];
+    
+    chooseWord({state}){
+      state.word = state.words[Math.floor(Math.random()*state.words.length)];
     },
+
+    // enregistrer le nom d'equipe dans le store
     setNomEquipe({ state }, nom){
       state.nomEquipes = nom; 
     },
-    chooseWord({state}){
-      state.word = state.words[Math.floor(Math.random()*state.words.length)];
+
+    // enregistrer l'actuelle equipe
+    setActuEquipe({ state }, actuEquipe){
+      state.actuEquipe = actuEquipe; 
+    },
+
+    // enregistrer l'autre equipe
+    setAutreEquipe({ state }, autreEquipe){
+      state.autreEquipe = autreEquipe; 
     }
   },
 })
