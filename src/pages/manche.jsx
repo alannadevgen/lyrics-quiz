@@ -17,30 +17,40 @@ import store from '../js/store';
 // import Equipe from '../components/equipe'; // ne fonctionne pas
 
 // composants
+const Manche = ({numManche}) => <h1><b>Manche n°{numManche}</b></h1>;
 const Equipe = ({nomEquipe}) => <span><b>Equipe</b> : {nomEquipe}</span>;
 const Score = ({scoreEquipe}) => <span><b>Score</b> : {scoreEquipe}</span>;
-const Manche = ({numManche}) => <h2><b>Manche n°{numManche}</b></h2>;
-
+const Question = ({mot}) => <span><b>Quelle chanson de quel artiste contient le mot suivant</b> : {mot} ?</span>;
 /* ne fonctionne pas
 const nomEquipes = useStore('nomEquipes');
 console.log(nomEquipes);
-
-const loadEquipe = () => {
-  store.dispatch('getNomEquipes', '0');
-};
 */
+
+// definition de l'equipe actuelle et de l'adversaire
+// const actuEquipe = Math.floor(Math.random() * 2);
+// const autreEquipe = Math.abs(actuEquipe-1);
+
 
 const getNextManche = () => {
   store.dispatch('incrementManche');
 };
 
-const updateScore = () => {
-  store.dispatch('incrementScore');
+const updateScore = ({numEquipe}) => {
+  store.dispatch('incrementScore', numEquipe);
 };
 
 const choixEquipe = Math.floor(Math.random() * 2);
 // const choixMot = Math.floor(Math.random(useStore('words').length()));
 const autreEquipe = Math.abs(choixEquipe-1);
+const NextLevelValidate = () => {
+  getNextManche();
+  store.dispatch('incrementScore', actuEquipe);
+};
+
+const NextLevelUnvalidate = () => {
+  getNextManche();
+  store.dispatch('incrementScore', autreEquipe);
+};
 
 const ManchePage = () => (
   <Page name="manche">
@@ -52,12 +62,27 @@ const ManchePage = () => (
 
     {/* Page content */}
     <Block>
+    
     {/* Information sur la manche en cours */}
     <Manche numManche={useStore('manche')}/>
-    <Equipe nomEquipe={useStore('nomEquipes')[choixEquipe]}/>
-    <br></br>
-    <Score scoreEquipe={useStore('scores')[choixEquipe]}/>
-    
+    <Row>
+      <Col>
+        {/* Equipe actuelle */}
+        <h2>Equipe actuelle</h2>
+        <Equipe nomEquipe={useStore('nomEquipes')[actuEquipe]}/>
+        <br></br>
+        <Score scoreEquipe={useStore('scores')[actuEquipe]}/>
+      </Col>
+      <Col>
+        {/* Autre équipe */}
+        <h2>Autre équipe</h2>
+        <Equipe nomEquipe={useStore('nomEquipes')[autreEquipe]}/>
+        <br></br>
+        <Score scoreEquipe={useStore('scores')[autreEquipe]}/>
+      </Col>
+    </Row>
+    <br></br><br></br>
+
     {/* Question */}
     <p>Quelle chanson de quel artiste contient le mot suivant : {useStore('words')[0]} ?</p>    
     
@@ -83,12 +108,12 @@ const ManchePage = () => (
     <Block strong noHairlinesMd>
       <Row>
         <Col>
-          <Button fill color="red" onClick={getNextManche}>
+          <Button fill color="red" onClick={NextLevelUnvalidate}>
             Proposition non validée
           </Button>
         </Col>
         <Col>
-          <Button fill color="green" onClick={getNextManche}>
+          <Button fill color="green" onClick={NextLevelValidate}>
             Proposition validée
           </Button>
         </Col>

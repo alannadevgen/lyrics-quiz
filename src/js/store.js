@@ -6,7 +6,7 @@ const store = createStore({
   state: {
     words: [],
     manche: 1,
-    scores: [10, 6],
+    scores: [0, 0],
     nomEquipes: ["Noël", "Alanna"]
   },
   getters: {
