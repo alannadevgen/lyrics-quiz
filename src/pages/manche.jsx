@@ -98,14 +98,14 @@ const ManchePage = () => (
     <Row>
       <Col>
         {/* Equipe actuelle */}
-        <h2>Equipe n°1</h2>
+        <h2>Equipe actuelle : à vous de jouer !</h2>
         <Equipe nomEquipe={useStore('nomEquipes')[useStore('actuEquipe')]}/>
         <br></br>
         <Score scoreEquipe={useStore('scores')[useStore('actuEquipe')]}/>
       </Col>
       <Col>
         {/* Autre équipe */}
-        <h2>Equipe n°2</h2>
+        <h2>Autre équipe</h2>
         <Equipe nomEquipe={useStore('nomEquipes')[useStore('autreEquipe')]}/>
         <br></br>
         <Score scoreEquipe={useStore('scores')[useStore('autreEquipe')]}/>
